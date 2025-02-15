@@ -1,0 +1,26 @@
+# Ignore Node modules
+node_modules/
+
+# Ignore build files
+build/
+dist/
+
+# Ignore dependency files
+package-lock.json
+yarn.lock
+
+# Ignore logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore testing coverage
+coverage/
+
+# Ignore environment variables (if any)
+.env
+
