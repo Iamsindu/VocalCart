@@ -1,10 +1,18 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const Schema = new mongoose.Schema({
-  name: String,
-  description: String,
-  embedding: { type: [Number], default: [] },
-});
+const productSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    category: { type: String, required: true },
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
+    brand: { type: String, required: true },
+    imageUrl: { type: String, required: true },
+    rating: { type: Number, default: 0 },
+    stock: { type: Number, required: true },
+    voiceKeywords: [{ type: String }],
+  },
+  { timestamps: true }
+);
 
-const Product = mongoose.model("Product", Schema);
-export default Product;
+module.exports = mongoose.model("Product", productSchema);
