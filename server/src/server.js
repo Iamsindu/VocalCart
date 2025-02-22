@@ -1,9 +1,11 @@
 const express = require("express");
 const connectDatabase = require("./config/db");
 require("dotenv").config();
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 app.use(express.json());
+app.use("/api/products", productRoutes);
 
 //connecting to the database
 connectDatabase();

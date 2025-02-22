@@ -8,9 +8,8 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     brand: { type: String, required: true },
     imageUrl: { type: String, required: true },
-    rating: { type: Number, default: 0 },
-    stock: { type: Number, required: true },
-    voiceKeywords: [{ type: String }],
+    // rating: { type: Number, default: 0 },
+    // stock: { type: Number, required: true },
   },
   { timestamps: true }
 );
