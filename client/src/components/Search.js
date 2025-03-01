@@ -27,9 +27,21 @@ const Search = () => {
       const response = await axios.post("http://localhost:5000/search", {
         query,
       });
-      setOutput(response.data.results);
+      if (response.data && response.data.results) {
+        setOutput(response.data.results);
+      } else {
+        setOutput([
+          {
+            name: "No results found",
+            description: "Try searching for something else.",
+          },
+        ]);
+      }
     } catch (error) {
       console.error("Error occured: ", error);
+      setOutput([
+        { name: "Error fetching data", description: "Please try again later." },
+      ]);
     }
   };
 
@@ -40,11 +52,15 @@ const Search = () => {
       </button>
       <p>Input: {text}</p>
       <ul>
-        {output.map((item, index) => (
-          <li key={index}>
-            {item.name} - {item.description}
-          </li>
-        ))}
+        {output.length > 0 ? (
+          output.map((item, index) => (
+            <li key={index}>
+              {item.name} - {item.description}
+            </li>
+          ))
+        ) : (
+          <p>No result found</p>
+        )}
       </ul>
     </div>
   );

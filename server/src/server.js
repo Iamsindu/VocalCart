@@ -1,11 +1,21 @@
+require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
 const connectDatabase = require("./config/db");
 require("dotenv").config();
-const productRoutes = require("./routes/productRoutes");
+//const productRoutes = require("./routes/productRoutes");
+const searchRoutes = require("./routes/searchRoutes");
 
-const app = express();
-app.use(express.json());
-app.use("/api/products", productRoutes);
+console.log(
+  "OpenAI API Key:",
+  process.env.OPENAI_API_KEY ? "Loaded" : "Not Found"
+);
+
+//app.use("/api/products", productRoutes);
+app.use("/", searchRoutes);
 
 //connecting to the database
 connectDatabase();
