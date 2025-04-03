@@ -1,13 +1,11 @@
 import React from "react";
-import Search from "./components/Search";
+import AppRouter from "./routers/AppRouter";
 
 const App = () => {
   return (
     <div>
-      <h1>VocalCart</h1>
-
-      <Search />
-    </div>
+      <AppRouter />
+    </div >
   );
 };
 

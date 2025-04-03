@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Search = () => {
+const SearchButton = () => {
   const [output, setOutput] = useState([]);
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -66,4 +66,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchButton;
