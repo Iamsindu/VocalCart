@@ -71,8 +71,8 @@ function Navigation() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#f9f9f9' }}>
-            <Container maxWidth="xl">52
+        <AppBar position="static" sx={{ backgroundColor: '#fff', boxShadow: 'none' }}>
+            <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
