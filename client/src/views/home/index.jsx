@@ -1,8 +1,9 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import banner from '../../images/banner.png';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import ProductCard from "../../components/common/ProductCard";
 
-const Home = () => {
+const Home = ({ products }) => {
     return (
         <Container maxWidth="xl">
             <Stack direction='row' alignItems='center' justifyContent='space-between' sx={{ backgroundColor: '#f3f3f3', maxHeight: '500px' }}>
@@ -17,6 +18,25 @@ const Home = () => {
                     <img src={banner} alt="banner-img" height='100%' width='100%' />
                 </Box>
             </Stack>
+            <Typography variant="h5" mt={2}>Products</Typography>
+
+            <Grid container spacing={2}>
+                {products.length > 0 ? (
+                    products.map((product) => {
+                        return (
+                            <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
+                                <ProductCard
+                                    name={product.name}
+                                    price={product.price}
+                                    imageUrl={product.imageUrl}
+                                />
+                            </Grid>
+                        );
+                    })
+                ) : (
+                    <Typography>No products found</Typography>
+                )}
+            </Grid>
         </Container>
     );
 };

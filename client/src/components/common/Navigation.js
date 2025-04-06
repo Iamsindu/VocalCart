@@ -17,8 +17,8 @@ import { Badge, Stack } from "@mui/material";
 import { ShoppingOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { HOME, SHOP } from "../../constants/routes";
-import SearchBar from "./SearchBar";
 import MicIcon from "@mui/icons-material/Mic";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -66,26 +66,45 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-function Navigation() {
+const Navigation = ({ setProducts }) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [query, setQuery] = useState("");
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    // Handle search
-    const handleSearch = (searchQuery) => {
-        setQuery(searchQuery);
-        console.log("Searching for:", searchQuery);
-        // Implement search logic here
+    const searchReq = async (query) => {
+        try {
+            const response = await axios.get(
+                `http://localhost:8000/api/search?query=${query}`
+            );
+            setProducts(response.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
     };
 
+    const handleSearch = () => {
+        if (query.trim()) {
+            searchReq(query);
+        }
+    };
+
+    const handleVoiceSearch = () => {
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+            setQuery(text);
+            searchReq(text);
+        };
+        recognition.start();
+    };
+
+    // console.log(products, "products")
     return (
         <AppBar position="static" sx={{ backgroundColor: "#f9f9f9" }}>
             <Container maxWidth="xl">
@@ -183,21 +202,10 @@ function Navigation() {
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
-                                {/* Voice Search Button */}
-                                <IconButton
-                                    onClick={() => {
-                                        const recognition = new window.webkitSpeechRecognition();
-                                        recognition.onresult = (event) => {
-                                            const text = event.results[0][0].transcript;
-                                            setQuery(text);
-                                            handleSearch(text);
-                                        };
-                                        recognition.start();
-                                    }}
+                                <IconButton onClick={handleVoiceSearch}
                                 >
                                     <MicIcon style={{ color: "black" }} />
                                 </IconButton>
-                                {/* Search Button */}
                                 <Button
                                     onClick={() => handleSearch(query)}
                                     variant="contained"

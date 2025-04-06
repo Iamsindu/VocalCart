@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -9,11 +9,12 @@ import { Home, Shop } from "../views";
 import { HOME, SHOP } from "../constants/routes";
 
 export default function AppRouter() {
+    const [products, setProducts] = useState([]);
     return (
         <Router>
-            <Navigation />
+            <Navigation setProducts={setProducts} />
             <Routes>
-                <Route path={HOME} element={<Home />} />
+                <Route path={HOME} element={<Home products={products} />} />
                 <Route path={SHOP} element={<Shop />} />
             </Routes>
         </Router>
