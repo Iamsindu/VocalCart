@@ -1,0 +1,80 @@
+export const _company = (index) =>
+    [
+        'Medhurst, Moore and Franey',
+        'Hahn, Homenick and Lind',
+        'Larkin LLC',
+        'Stamm, Larson and Mertz',
+        'Spencer, Raynor and Langosh',
+        'Lehner - Feeney',
+        'Leuschke, Harris and Kuhlman',
+        'Gutmann - Kassulke',
+        'Turcotte - Runolfsson',
+        'Howe - Anderson',
+        'Sipes - Yost',
+        'Johns - Aufderhar',
+        'Schmidt LLC',
+        'Smitham - Gerlach',
+        'Waelchi - VonRueden',
+        'Padberg - Macejkovic',
+        'Lemke - Ferry',
+        'Koch and Sons',
+        'Klein - Rolfson',
+        'Weimann LLC',
+        'White, Cassin and Goldner',
+        'Mohr, Langworth and Hills',
+        'Mitchell, Volkman and Prosacco',
+        'Streich Group',
+    ][index];
+
+
+export const _fullName = (index) =>
+    [
+        'Billy Stoltenberg',
+        'Eloise Ebert',
+        'Teresa Luettgen',
+        'Salvador Mayert',
+        'Dr. Guadalupe Rath',
+        'Kelvin Pouros',
+        'Thelma Langworth',
+        'Kristen Wunsch',
+        'Steve Welch',
+        'Brian Jacobs',
+        'Lillie Schultz',
+        'Mr. Conrad Spinka',
+        'Charlene Krajcik',
+        'Kerry Kuhlman',
+        'Betty Hammes',
+        'Tony Paucek PhD',
+        'Sherri Davis',
+        'Angel Rolfson-Kulas',
+        'Dr. Lee Doyle-Grant',
+        'Cheryl Romaguera',
+        'Billy Braun',
+        'Adam Trantow',
+        'Brandon Von',
+        'Willis Ankunding',
+    ][index];
+
+
+export const _users = [...Array(24)].map((_, index) => ({
+    id: index,
+    name: _fullName(index),
+    company: _company(index),
+    isVerified: index,
+    avatarUrl: `/assets/images/avatar/avatar-${index + 1}.webp`,
+    status: index % 4 ? 'active' : 'banned',
+    role:
+        [
+            'Leader',
+            'Hr Manager',
+            'UI Designer',
+            'UX Designer',
+            'UI/UX Designer',
+            'Project Manager',
+            'Backend Developer',
+            'Full Stack Designer',
+            'Front End Developer',
+            'Full Stack Developer',
+        ][index] || 'UI Designer',
+}));
+
