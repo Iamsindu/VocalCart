@@ -102,16 +102,16 @@ const Shop = () => {
             style={{ textDecoration: 'none', color: 'inherit' }}
         > 
           <div style={styles.card}>
-            <img
-              src={product.images[0]}
-              alt={product.title}
-              style={styles.image}
+          <img
+             src={product.imageUrl ? `http://localhost:8000${product.imageUrl}` : '/default-image.jpg'}
+             alt={product.productName}
+            style={styles.image}
             />
-            <h3 style={styles.title}>{product.title}</h3>
+            <h3 style={styles.title}>{product.productName}</h3>
             <div>
-              <p style={styles.description}><strong>Details:</strong> {product.product_description}</p>
-              <p style={styles.price}><strong>Price:</strong> ${product.final_price}</p>
+                <p style={styles.price}><strong>Price:</strong> ${product.offerPrice}</p>
             </div>
+
           </div>
         </Link>
       ))}
