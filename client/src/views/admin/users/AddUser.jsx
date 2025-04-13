@@ -1,7 +1,8 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText, Container, Stack, Box, Typography } from '@mui/material';
+import { TextField, MenuItem, Button, FormControl, InputLabel, Select, FormHelperText, Stack, Box, Typography } from '@mui/material';
+import AdminDashboardLayout from '../../../components/common/Drawer';
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
@@ -14,7 +15,7 @@ const validationSchema = Yup.object({
 const roles = ['Super Admin', 'Product Manager', 'Content Manager'];
 const statuses = ['Active', 'Inactive'];
 
-const UserForm = () => {
+const AddUser = () => {
     const initialValues = {
         name: '',
         email: '',
@@ -28,14 +29,14 @@ const UserForm = () => {
     };
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-        >
-            {({ errors, touched, handleChange, handleBlur, values }) => (
-                <Box sx={{ backgroundColor: '#F9FAFB', minHeight: '100vh', py: 5 }}>
-                    <Container maxWidth="sm">
+        <AdminDashboardLayout>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+            >
+                {({ errors, touched, handleChange, handleBlur, values }) => (
+                    <Box sx={{ minHeight: '100vh', py: 5 }}>
                         <Typography variant="h4" gutterBottom>
                             Create New User
                         </Typography>
@@ -120,11 +121,11 @@ const UserForm = () => {
                                 </Button>
                             </Stack>
                         </Form>
-                    </Container>
-                </Box>
-            )}
-        </Formik>
+                    </Box>
+                )}
+            </Formik>
+        </AdminDashboardLayout>
     );
 };
 
-export default UserForm;
+export default AddUser;

@@ -63,3 +63,27 @@ export function applyFilter({ inputData, comparator, filterName }) {
 
     return inputData;
 }
+
+
+export const getParentNodesFromMenu = (
+    link,
+    menuList,
+    route
+) => {
+    let parentNodes = [];
+    menuList.forEach(menu => {
+        if (menu.link === link) {
+            parentNodes = [...route];
+        }
+        if (menu.children) {
+            const parentNode = getParentNodesFromMenu(link, menu.children, [
+                ...route,
+                menu.id,
+            ]);
+            if (parentNode.length > 0) {
+                parentNodes = parentNode;
+            }
+        }
+    });
+    return parentNodes;
+};

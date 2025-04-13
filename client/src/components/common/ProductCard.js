@@ -3,8 +3,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { PRODUCTDETAIL } from '../../constants/routes';
-import { Link } from 'react-router-dom';
+// import { PRODUCT_DETAILS } from '../../constants/routes';
+// import { Link } from 'react-router-dom';
 
 export default function ProductCard({ name, price, imageUrl }) {
     return (
@@ -16,10 +16,10 @@ export default function ProductCard({ name, price, imageUrl }) {
             />
             <CardContent sx={{ p: 2 }}>
                 <Typography gutterBottom variant="h6"
-                    component={Link}
-                    to={PRODUCTDETAIL}
+                // component={Link}
+                // to={PRODUCT_DETAILS}
                 >
-                    {name.length > 40 ? name.substring(0, 40) + '...' : name}
+                    {name && name.length > 40 ? name.substring(0, 40) + '...' : name}
                 </Typography>
                 <Typography variant='h6' fontWeight={600}>
                     ${price}

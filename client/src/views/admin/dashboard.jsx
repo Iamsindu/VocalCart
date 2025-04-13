@@ -1,11 +1,11 @@
-import { SideNavbar } from "./SideNavbar";
-import { UserView } from "./user";
+import AdminDashboardLayout from "../../components/common/Drawer";
 
 const Dashboard = () => {
     return (
         <>
-            <SideNavbar />
-            <UserView />
+            <AdminDashboardLayout>
+                <h1>Welcome to dashboard</h1>
+            </AdminDashboardLayout>
         </>
     );
 };
