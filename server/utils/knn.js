@@ -9,14 +9,17 @@ function cosineSimilarity(vector1, vector2) {
     normalize2 = normalize2 + vector2[i] ** 2;
   }
 
+  //cosine similarity = dot(A,B) / (||A|| * ||B||)
   return dotProduct / (Math.sqrt(normalize1) * Math.sqrt(normalize2));
 }
 
-function Knearestn(queryV, data, k = 5) {
+function Knearestn(queryV, data, k = 10) {
+  //check the input vector
   if (!Array.isArray(queryV) || queryV.length === 0) {
     throw new Error("The vectorized query must be non-empty array");
   }
 
+  //mapping over each item and calculating similarity with the input query vector
   const scoredItems = items.map((item) => {
     if (!Array.isArray(item.vector)) {
       throw new Error("Every item should have a vector array");
@@ -25,11 +28,12 @@ function Knearestn(queryV, data, k = 5) {
     const similarity = cosineSimilarity(queryV, item.vector);
 
     return {
-      ...item,
-      similarity,
+      ...item, //includingn original products data
+      similarity, //adding similarity score for sorting
     };
   });
 
+  //sorting items in descending order of similarity and returning top k=10
   return scoredItems.sort((a, b) => b.similarity - a.similarity).slice(0, k);
 }
 

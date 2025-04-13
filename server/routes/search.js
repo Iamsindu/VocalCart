@@ -4,27 +4,31 @@ const generateEmbedding = require("../utils/embeddings");
 
 const router = express.Router();
 
+//this route handles semantic serch based on user input query
 router.get("/", async (req, res) => {
   try {
     const { query } = req.query;
+
+    //message displayed if query is not provided
     if (!query) return res.status(400).json({ message: "Query is required" });
 
-    // Generate query vector embedding
+    // convert text search query into numerical embedding
     const queryVector = await generateEmbedding(query);
 
-    // Perform vector search using MongoDB aggregation
+    // connecting to mongodb to search and find semantically similar products
     const products = await Product.aggregate([
       {
         $vectorSearch: {
-          queryVector: queryVector,
+          queryVector: queryVector, //user input search
           path: "vector",
-          index: "default", // Make sure this matches the created index in MongoDB
+          index: "default", // vector index in mongoDB
           numCandidates: 10,
           limit: 10,
         },
       },
     ]);
 
+    //returning similar product from the database
     res.json(products);
   } catch (error) {
     console.error("Search Error:", error);

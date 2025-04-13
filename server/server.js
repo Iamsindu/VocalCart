@@ -1,27 +1,23 @@
 (async () => {
-    const fetch = await import('node-fetch');
-    globalThis.fetch = fetch.default;
-    globalThis.Headers = fetch.Headers;
-    globalThis.Request = fetch.Request;
-    globalThis.Response = fetch.Response;
+  const fetch = await import("node-fetch");
 
-    const express = require("express");
-    const cors = require("cors");
-    const path = require("path");
-    const connectDB = require("./db");
-    const productRoutes = require("./routes/productRoutes");
-    require("dotenv").config();
+  const express = require("express");
+  const cors = require("cors");
+  const path = require("path");
+  const connectDB = require("./db");
+  const productRoutes = require("./routes/productRoutes");
+  require("dotenv").config();
 
-    const app = express();
-    app.use(express.json());
-    app.use(cors());
-    app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-    app.use('/api/products', productRoutes);
+  const app = express();
+  app.use(express.json());
+  app.use(cors());
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+  app.use('/api/products', productRoutes);
 
-    connectDB();
+  connectDB();
 
-    app.use("/api/search", require("./routes/search"));
+  app.use("/api/search", require("./routes/search"));
 
-    const PORT = process.env.PORT || 8000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 })();
