@@ -27,6 +27,7 @@ export default function AppRouter() {
         <Route path={USERS_ADD} element={<AddUser />} />
         <Route path={PRODUCT_LIST} element={<ListProducts />} />
         <Route path={PRODUCT_ADD} element={<AddProduct />} />
+        <Route path="*" element={<NotFoundView/>}/>
       </Routes>
     </Router>
   );
