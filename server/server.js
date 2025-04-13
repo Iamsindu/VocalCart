@@ -17,6 +17,7 @@
   connectDB();
 
   app.use("/api/search", require("./routes/search"));
+  app.use("/api/products", require("./routes/products"));
 
   const PORT = process.env.PORT || 8000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
