@@ -6,10 +6,18 @@ const productSchema = new mongoose.Schema(
     category: { type: String, required: true },
     subCategory: { type: String },
     description: { type: String },
-    stockStatus: { type: String, enum: ['out_of_stock', 'in_stock'], default: 'In Stock' },
+    stockStatus: {
+      type: String,
+      enum: ["out_of_stock", "in_stock"],
+      default: "In Stock",
+    },
     discount: { type: Number, default: 0 },
     offerPrice: { type: Number },
     imageUrl: { type: String },
+    vector: {
+      type: [Number],
+      index: true,
+    },
   },
   {
     timestamps: true,
