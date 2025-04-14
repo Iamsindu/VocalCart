@@ -10,6 +10,7 @@ import AddProduct from "../views/admin/products/AddProduct";
 import ListProducts from "../views/admin/products/ListProducts";
 import { ListUsers } from "../views/admin/users/ListUsers";
 import AddUser from "../views/admin/users/AddUser";
+import { NotFoundView } from "../views/not-found";
 
 export default function AppRouter() {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,7 @@ export default function AppRouter() {
         <Route path={USERS_ADD} element={<AddUser />} />
         <Route path={PRODUCT_LIST} element={<ListProducts />} />
         <Route path={PRODUCT_ADD} element={<AddProduct />} />
-        <Route path="*" element={<NotFoundView/>}/>
+        <Route path="*" element={<NotFoundView />} />
       </Routes>
     </Router>
   );
