@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Badge, Stack } from "@mui/material";
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import { ShoppingOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { HOME, SHOP } from "../../constants/routes";
 import MicIcon from "@mui/icons-material/Mic";
@@ -104,6 +104,7 @@ const Navigation = ({ setProducts }) => {
         recognition.start();
     };
 
+    // console.log(products, "products")
     return (
         <AppBar position="static" sx={{ backgroundColor: "#f9f9f9" }}>
             <Container maxWidth="xl">
@@ -189,7 +190,7 @@ const Navigation = ({ setProducts }) => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Stack direction="row" spacing={2} alignItems='center'>
+                        <Stack direction="row" spacing={2}>
                             {/* Styled SearchBar with Text & Voice Search */}
                             <Search>
                                 <SearchIconWrapper>
@@ -215,7 +216,9 @@ const Navigation = ({ setProducts }) => {
                             </Search>
 
                             <Badge badgeContent={1} color="error">
-                                <ShoppingBagOutlinedIcon size='large' style={{ color: 'black' }} />
+                                <ShoppingOutlined
+                                    style={{ color: "black", fontSize: "1.5rem" }}
+                                />
                             </Badge>
                         </Stack>
                     </Box>
