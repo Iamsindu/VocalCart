@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActionArea,
+  Button,
+  Divider,
+} from '@mui/material';
 
 const Shop = () => {
   const [productsByCategory, setProductsByCategory] = useState({});
@@ -24,110 +35,101 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
-  const styles = {
-    page: {
-      padding: '20px',
-      fontFamily: 'Segoe UI, sans-serif',
-      backgroundColor: '#f9f9f9',
-    },
-    mainTitle: {
-      fontSize: '32px',
-      fontWeight: 'bold',
-      marginBottom: '30px',
-      textAlign: 'center',
-      color: '#333',
-    },
-    categoryBlock: {
-      marginBottom: '40px',
-    },
-    categoryTitle: {
-      fontSize: '24px',
-      fontWeight: '600',
-      marginBottom: '16px',
-      borderBottom: '2px solid #ddd',
-      paddingBottom: '8px',
-      color: '#444',
-    },
-    productGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-      gap: '20px',
-    },
-    card: {
-      backgroundColor: '#fff',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '16px',
-      boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-    },
-    image: {
-      width: '100%',
-      height: '180px',
-      objectFit: 'cover',
-      borderRadius: '6px',
-      marginBottom: '10px',
-    },
-    title: {
-      fontSize: '16px',
-      fontWeight: 'bold',
-      marginBottom: '6px',
-      color: '#222',
-    },
-    description: {
-      fontSize: '14px',
-      color: '#666',
-      marginBottom: '8px',
-    },
-    price: {
-      fontSize: '18px',
-      fontWeight: '600',
-      color: '#008000',
-    },
-  };
-
   return (
-    <div style={styles.page}>
-      <h1 style={styles.mainTitle}>Shop by Category</h1>
+    <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
+      <Typography variant="h4" fontWeight="bold" textAlign="center" mb={5}>
+        Shop by Category
+      </Typography>
+
       {Object.entries(productsByCategory).map(([category, products]) => (
-        <div key={category} style={styles.categoryBlock}>
-        <h2 style={styles.categoryTitle}>{category}</h2>
-        <div style={styles.productGrid}>
-         {products.slice(0, 5).map(product => (
-          <Link 
-           to={`/product/${product._id}`} 
-           key={product._id} 
-            style={{ textDecoration: 'none', color: 'inherit' }}
-        > 
-          <div style={styles.card}>
-          <img
-             src={product.imageUrl ? `http://localhost:8000${product.imageUrl}` : '/default-image.jpg'}
-             alt={product.productName}
-            style={styles.image}
-            />
-            <h3 style={styles.title}>{product.productName}</h3>
-            <div>
-                <p style={styles.price}><strong>Price:</strong> ${product.offerPrice}</p>
-            </div>
+        <Box key={category} mb={6}>
+          <Typography variant="h5" fontWeight="600" mb={2}>
+            {category}
+          </Typography>
+          <Divider sx={{ mb: 3 }} />
 
-          </div>
-        </Link>
+          <Grid container spacing={3}>
+            {products.slice(0, 5).map((product) => (
+              <Grid
+                item
+                key={product._id}
+                sx={{
+                  width: 260,
+                  display: 'flex',
+                }}
+              >
+                <Card
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <CardActionArea
+                    component={Link}
+                    to={`/product/${product._id}`}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'stretch',
+                      height: '100%',
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={
+                        product.imageUrl
+                          ? `http://localhost:8000${product.imageUrl}`
+                          : '/default-image.jpg'
+                      }
+                      alt={product.productName}
+                      sx={{ objectFit: 'cover' }}
+                    />
+
+                    <CardContent
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flexGrow: 1,
+                      }}
+                    >
+                      <Typography variant="subtitle1" fontWeight="bold" gutterBottom noWrap>
+                        {product.productName}
+                      </Typography>
+
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ flexGrow: 1 }}
+                      >
+                        {product.description?.slice(0, 60) ?? ''}
+                      </Typography>
+
+                      <Typography variant="h6" color="green" mt="auto">
+                        ${product.offerPrice}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          <Box mt={2} textAlign="right">
+            <Button
+              component={Link}
+              to={`/category/${encodeURIComponent(category)}`}
+              variant="text"
+              sx={{ fontWeight: 500 }}
+            >
+              View More →
+            </Button>
+          </Box>
+        </Box>
       ))}
-    </div>
-    <div style={{ marginTop: '10px', textAlign: 'right' }}>
-      <Link 
-        to={`/category/${encodeURIComponent(category)}`} 
-        style={{ color: '#007BFF', textDecoration: 'underline', fontWeight: '500' }}
-      >
-        View More →
-      </Link>
-    </div>
-  </div>
-))}
-
-</div>
+    </Box>
   );
 };
 
