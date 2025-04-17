@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema(
     stockStatus: {
       type: String,
       enum: ["out_of_stock", "in_stock"],
-      default: "In Stock",
+      default: "in_Stock",
     },
     discount: { type: Number, default: 0 },
     offerPrice: { type: Number },
@@ -24,4 +24,4 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Product", productSchema, "products");
