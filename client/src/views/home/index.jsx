@@ -10,7 +10,9 @@ const Home = ({ products }) => {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const data = await axios.get("http://localhost:8000/api/products");
+            const data = await axios.get(
+                `${process.env.REACT_APP_API_URL}/api/products`
+            );
             setDefaultProducts(data);
         };
         fetchProducts();
@@ -33,29 +35,18 @@ const Home = ({ products }) => {
             <Typography variant="h5" mt={2}>Products</Typography>
 
             <Grid container spacing={2}>
-                {defaultProducts
-                    ? defaultProducts.data.map(product => {
-                        return (
-                            <Grid key={product._id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                                <ProductCard
-                                    name={product.name || product.productName}
-                                    price={product.price || product.offerPrice}
-                                    imageUrl={product.imageUrl || `http://localhost:8000${product.imageUrl}`}
-                                />
-                            </Grid>
-                        );
-                    })
-                    : products.map(product => {
-                        return (
-                            <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
-                                <ProductCard
-                                    name={product.name || product.productName}
-                                    price={product.price || product.offerPrice}
-                                    imageUrl={product.imageUrl || `http://localhost:8000${product.imageUrl}`}
-                                />
-                            </Grid>
-                        );
-                    })}
+                {(products && products.length > 0
+                    ? products
+                    : defaultProducts?.data || []
+                ).map((product) => (
+                    <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
+                        <ProductCard
+                            name={product.name || product.productName}
+                            price={product.price || product.offerPrice}
+                            imageUrl={product.imageUrl?.startsWith("http") ? product.imageUrl : `http://localhost:8000${product.imageUrl}`}
+                        />
+                    </Grid>
+                ))}
             </Grid>
         </Container>
     );
