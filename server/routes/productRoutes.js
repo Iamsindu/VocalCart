@@ -24,7 +24,8 @@ const upload = multer({ storage });
 productRoutes.post("/", upload.single("image"), async (req, res) => {
   try {
     const {
-      productName,
+      name,
+      price,
       category,
       subCategory,
       description,
@@ -34,13 +35,14 @@ productRoutes.post("/", upload.single("image"), async (req, res) => {
     } = req.body;
 
     //This will create a combined text string for the embedding process
-    const texttoembedding = `${productName}. ${description}. Category: ${category} ${subCategory}`;
+    const texttoembedding = `${name}. ${description}. Category: ${category} ${subCategory}`;
 
     //generate the embedding vector
     const vector = await generateEmbedding(texttoembedding);
 
     const newProduct = new Product({
-      productName,
+      name,
+      price,
       category,
       subCategory,
       description,

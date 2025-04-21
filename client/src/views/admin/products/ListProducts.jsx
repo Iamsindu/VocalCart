@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import AdminDashboardLayout from "../../../components/common/Drawer";
 import ProductCard from "../../../components/common/ProductCard";
 

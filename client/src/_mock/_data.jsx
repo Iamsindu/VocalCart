@@ -1,3 +1,18 @@
+export const categories = {
+    Electronics: ['Computers & Tablets', 'TV & Home Theater', 'Smart Home'],
+    Fashion: ['Men', 'Women', 'Kids'],
+    Appliances: ['AC', 'Refrigerators', 'Washing Machines'],
+    Beauty: ['Makeup', 'Skincare', 'Haircare'],
+    Sports: ['Fitness Equipment', 'Outdoor Gear', 'Sportswear'],
+    HomeDecor: ['Furniture', 'Lighting', 'Wall Art', 'Curtains'],
+    Books: ['Fiction', 'Non-fiction', 'Comics', 'Educational'],
+    Grocery: ['Vegetables', 'Snacks', 'Beverages', 'Packaged Foods'],
+    Automotive: ['Car Accessories', 'Bike Accessories', 'Oils & Lubricants'],
+    Toys: ['Educational Toys', 'Soft Toys', 'Action Figures'],
+    BabyCare: ['Diapers', 'Baby Food', 'Toys & Accessories'],
+    Footwear: ['Men', 'Women', 'Kids'],
+};
+
 export const _company = (index) =>
     [
         'Medhurst, Moore and Franey',
