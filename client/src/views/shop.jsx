@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -11,7 +11,7 @@ import {
   CardActionArea,
   Button,
   Divider,
-} from '@mui/material';
+} from "@mui/material";
 
 const Shop = () => {
   const [productsByCategory, setProductsByCategory] = useState({});
@@ -19,16 +19,18 @@ const Shop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/products');
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/products`
+        );
         const categorized = res.data.reduce((acc, product) => {
-          const category = product.category || 'Uncategorized';
+          const category = product.category || "Uncategorized";
           if (!acc[category]) acc[category] = [];
           acc[category].push(product);
           return acc;
         }, {});
         setProductsByCategory(categorized);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -36,7 +38,7 @@ const Shop = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: 4, backgroundColor: '#f5f5f5' }}>
+    <Box sx={{ padding: 4, backgroundColor: "#f5f5f5" }}>
       <Typography variant="h4" fontWeight="bold" textAlign="center" mb={5}>
         Shop by Category
       </Typography>
@@ -55,25 +57,25 @@ const Shop = () => {
                 key={product._id}
                 sx={{
                   width: 260,
-                  display: 'flex',
+                  display: "flex",
                 }}
               >
                 <Card
                   sx={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
                   <CardActionArea
                     component={Link}
                     to={`/product/${product._id}`}
                     sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'stretch',
-                      height: '100%',
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "stretch",
+                      height: "100%",
                     }}
                   >
                     <CardMedia
@@ -82,20 +84,25 @@ const Shop = () => {
                       image={
                         product.imageUrl
                           ? `http://localhost:8000${product.imageUrl}`
-                          : '/default-image.jpg'
+                          : "/default-image.jpg"
                       }
                       alt={product.productName}
-                      sx={{ objectFit: 'cover' }}
+                      sx={{ objectFit: "cover" }}
                     />
 
                     <CardContent
                       sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
+                        display: "flex",
+                        flexDirection: "column",
                         flexGrow: 1,
                       }}
                     >
-                      <Typography variant="subtitle1" fontWeight="bold" gutterBottom noWrap>
+                      <Typography
+                        variant="subtitle1"
+                        fontWeight="bold"
+                        gutterBottom
+                        noWrap
+                      >
                         {product.productName}
                       </Typography>
 
@@ -104,7 +111,7 @@ const Shop = () => {
                         color="text.secondary"
                         sx={{ flexGrow: 1 }}
                       >
-                        {product.description?.slice(0, 60) ?? ''}
+                        {product.description?.slice(0, 60) ?? ""}
                       </Typography>
 
                       <Typography variant="h6" color="green" mt="auto">
