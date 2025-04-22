@@ -83,7 +83,7 @@ const Shop = () => {
                       height="180"
                       image={
                         product.imageUrl
-                          ? `http://localhost:8000${product.imageUrl}`
+                          ? `${process.env.REACT_APP_API_URL}${product.imageUrl}`
                           : "/default-image.jpg"
                       }
                       alt={product.productName}

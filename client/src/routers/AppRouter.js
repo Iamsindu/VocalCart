@@ -11,6 +11,7 @@ import ListProducts from "../views/admin/products/ListProducts";
 import { ListUsers } from "../views/admin/users/ListUsers";
 import AddUser from "../views/admin/users/AddUser";
 import { NotFoundView } from "../views/not-found";
+import Footer from "../components/common/Footer";
 
 export default function AppRouter() {
   const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ export default function AppRouter() {
         <Route path={PRODUCT_ADD} element={<AddProduct />} />
         <Route path="*" element={<NotFoundView />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

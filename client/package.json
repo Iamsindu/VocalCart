@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^6.0.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.0.1",
@@ -15,13 +14,12 @@
     "@toolpad/core": "^0.13.0",
     "axios": "^1.7.9",
     "formik": "^2.4.6",
-    "next": "^15.3.0",
-    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.4.1",
     "react-scripts": "^5.0.1",
+    "swiper": "^11.2.6",
     "web-vitals": "^2.1.4",
     "yup": "^1.6.1"
   },

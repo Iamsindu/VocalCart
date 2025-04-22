@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Badge, Stack } from "@mui/material";
-import { ShoppingOutlined } from "@ant-design/icons";
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Link } from "react-router-dom";
 import { HOME, SHOP } from "../../constants/routes";
 import MicIcon from "@mui/icons-material/Mic";
@@ -50,17 +50,8 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "black",
-  flexGrow: 1,
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(2)})`,
-    transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
 }));
 
@@ -187,9 +178,8 @@ const Navigation = ({ setProducts }) => {
             </Button>
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Stack direction="row" spacing={2}>
-              {/* Styled SearchBar with Text & Voice Search */}
+          <Box>
+            <Stack direction="row" spacing={2} alignItems='center'>
               <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
@@ -213,9 +203,7 @@ const Navigation = ({ setProducts }) => {
               </Search>
 
               <Badge badgeContent={1} color="error">
-                <ShoppingOutlined
-                  style={{ color: "black", fontSize: "1.5rem" }}
-                />
+                <ShoppingBagOutlinedIcon size='large' style={{ color: 'black' }} />
               </Badge>
             </Stack>
           </Box>

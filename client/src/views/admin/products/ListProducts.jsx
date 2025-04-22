@@ -51,7 +51,7 @@ export default function ListProducts() {
               <ProductCard
                 name={product.productName || product.name}
                 price={product.offerPrice || product.price}
-                imageUrl={`http://localhost:8000${product.imageUrl}`}
+                imageUrl={`${process.env.REACT_APP_API_URL}${product.imageUrl}`}
               />
             </Grid>
           ))}
