@@ -26,8 +26,8 @@ export default function AppRouter() {
         <Route path={SIGNIN} element={<SignInView />} />
 
         <Route path={DASHBOARD} element={<Dashboard />} />
-        <Route path={USERS_LIST} element={<ListUsers />} />
-        <Route path={USERS_ADD} element={<AddUser />} />
+        {/* <Route path={USERS_LIST} element={<ListUsers />} />
+        <Route path={USERS_ADD} element={<AddUser />} /> */}
         <Route path={PRODUCT_LIST} element={<ListProducts />} />
         <Route path={PRODUCT_ADD} element={<AddProduct />} />
         <Route path="*" element={<NotFoundView />} />

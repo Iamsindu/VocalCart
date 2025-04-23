@@ -34,31 +34,31 @@ const NAVIGATION = [
             },
         ],
     },
-    {
-        segment: "users",
-        title: 'Users',
-        icon: <ProductionQuantityLimitsRoundedIcon />,
-        children: [
-            {
-                segment: "add",
-                title: 'Add user',
-                icon: <DescriptionIcon />,
-            },
-            {
-                segment: "list",
-                title: 'All users',
-                icon: <BarChartIcon />,
-            },
-        ],
-    },
-    {
-        kind: 'divider',
-    },
-    {
-        segment: 'orders',
-        title: 'Orders',
-        icon: <ShoppingCartIcon />,
-    },
+    // {
+    //     segment: "users",
+    //     title: 'Users',
+    //     icon: <ProductionQuantityLimitsRoundedIcon />,
+    //     children: [
+    //         {
+    //             segment: "add",
+    //             title: 'Add user',
+    //             icon: <DescriptionIcon />,
+    //         },
+    //         {
+    //             segment: "list",
+    //             title: 'All users',
+    //             icon: <BarChartIcon />,
+    //         },
+    //     ],
+    // },
+    // {
+    //     kind: 'divider',
+    // },
+    // {
+    //     segment: 'orders',
+    //     title: 'Orders',
+    //     icon: <ShoppingCartIcon />,
+    // },
 ];
 
 const demoTheme = createTheme({
