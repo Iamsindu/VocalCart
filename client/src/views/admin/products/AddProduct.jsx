@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
 import {
   TextField,
@@ -18,38 +17,15 @@ import {
   Box,
 } from '@mui/material';
 import AdminDashboardLayout from '../../../components/common/Drawer';
-
-const validationSchema = Yup.object({
-  productName: Yup.string().required('Product name is required'),
-  category: Yup.string().required('Category is required'),
-  subCategory: Yup.string().required('Sub-category is required'),
-  description: Yup.string().required('Description is required'),
-  stockStatus: Yup.string().required('Stock status is required'),
-  discount: Yup.number().min(0, 'Discount must be at least 0'),
-  offerPrice: Yup.number().min(0, 'Offer price must be at least 0'),
-});
-
-export const categories = {
-  Electronics: ['Computers & Tablets', 'TV & Home Theater', 'Smart Home'],
-  Fashion: ['Men', 'Women', 'Kids'],
-  Appliances: ['AC', 'Refrigerators', 'Washing Machines'],
-  Beauty: ['Makeup', 'Skincare', 'Haircare'],
-  Sports: ['Fitness Equipment', 'Outdoor Gear', 'Sportswear'],
-  HomeDecor: ['Furniture', 'Lighting', 'Wall Art', 'Curtains'],
-  Books: ['Fiction', 'Non-fiction', 'Comics', 'Educational'],
-  Grocery: ['Vegetables', 'Snacks', 'Beverages', 'Packaged Foods'],
-  Automotive: ['Car Accessories', 'Bike Accessories', 'Oils & Lubricants'],
-  Toys: ['Educational Toys', 'Soft Toys', 'Action Figures'],
-  BabyCare: ['Diapers', 'Baby Food', 'Toys & Accessories'],
-  Footwear: ['Men', 'Women', 'Kids'],
-};
-
+import { categories } from '../../../_mock/_data';
+import { validationSchema } from './ValidationSchema';
 
 export default function AddProduct() {
   const [imagePreview, setImagePreview] = useState(null);
 
   const initialValues = {
-    productName: '',
+    name: '',
+    price: '',
     image: null,
     category: '',
     subCategory: '',
@@ -119,12 +95,22 @@ export default function AddProduct() {
                 <TextField
                   fullWidth
                   label="Product Name"
-                  name="productName"
-                  value={values.productName}
+                  name="name"
+                  value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.productName && Boolean(errors.productName)}
-                  helperText={touched.productName && errors.productName}
+                  error={touched.name && Boolean(errors.name)}
+                  helperText={touched.name && errors.name}
+                />
+                <TextField
+                  fullWidth
+                  label="Product Price"
+                  name="price"
+                  value={values.price}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.price && Boolean(errors.price)}
+                  helperText={touched.price && errors.price}
                 />
 
                 <Button variant="outlined" component="label" fullWidth>
