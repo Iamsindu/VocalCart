@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './swiper.css';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 
 const Home = ({ products }) => {
     const [visibleCount, setVisibleCount] = useState(20);
@@ -43,7 +43,15 @@ const Home = ({ products }) => {
 
     return (
         <Container maxWidth="xl" sx={{ pb: 6 }}>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            <Swiper
+                navigation={true}
+                modules={[Autoplay, Navigation]}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                className="mySwiper"
+            >
                 <SwiperSlide>
                     <img src={prod3} alt="prod1" height='100%' width='100%' />
                 </SwiperSlide>
