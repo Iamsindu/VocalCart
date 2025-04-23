@@ -13,7 +13,7 @@ import ListProducts from "../views/admin/products/ListProducts";
 import { NotFoundView } from "../views/not-found";
 import Footer from "../components/common/Footer";
 import ProductDetail from "../views/product-detail";
-
+import CategoryProducts from "../views/categoryProducts";
 export default function AppRouter() {
   const [products, setProducts] = useState([]);
   return (
@@ -22,9 +22,10 @@ export default function AppRouter() {
       <Routes>
         <Route path={HOME} element={<Home products={products} />} />
         <Route path={PRODUCT_DETAIL} element={<ProductDetail />} />
+
         <Route path={SHOP} element={<Shop />} />
         <Route path={SIGNIN} element={<SignInView />} />
-
+        <Route path="/category/:category" element={<CategoryProducts />} />
         <Route path={DASHBOARD} element={<Dashboard />} />
         {/* <Route path={USERS_LIST} element={<ListUsers />} />
         <Route path={USERS_ADD} element={<AddUser />} /> */}
