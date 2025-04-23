@@ -70,8 +70,9 @@ const Home = ({ products }) => {
                 <>
                     <Grid container spacing={2}>
                         {visibleProducts.map((product) => (
-                            <Grid key={product._id} item xs={12} sm={6} md={4} lg={3}>
+                            <Grid key={product._id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                                 <ProductCard
+                                    id={product._id}
                                     name={product.name || product.productName}
                                     price={product.price || product.offerPrice}
                                     imageUrl={

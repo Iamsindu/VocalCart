@@ -83,7 +83,7 @@ export default function AddProduct() {
         }
       }
 
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_URL}/api/products`,
         formData,
         {
@@ -93,7 +93,6 @@ export default function AddProduct() {
         }
       );
 
-      console.log('Product created:', response.data);
     } catch (error) {
       console.error('Error creating product:', error.response?.data || error.message);
     }

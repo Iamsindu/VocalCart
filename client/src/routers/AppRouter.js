@@ -5,13 +5,14 @@ import Home from "../views/home";
 import Shop from "../views/shop";
 import SignInView from "../views/sign-in";
 import Dashboard from "../views/admin/dashboard";
-import { DASHBOARD, HOME, PRODUCT_ADD, PRODUCT_LIST, SHOP, SIGNIN, USERS_ADD, USERS_LIST } from "../constants/routes";
+import { DASHBOARD, HOME, PRODUCT_ADD, PRODUCT_DETAIL, PRODUCT_LIST, SHOP, SIGNIN, USERS_ADD, USERS_LIST } from "../constants/routes";
 import AddProduct from "../views/admin/products/AddProduct";
 import ListProducts from "../views/admin/products/ListProducts";
 import { ListUsers } from "../views/admin/users/ListUsers";
 import AddUser from "../views/admin/users/AddUser";
 import { NotFoundView } from "../views/not-found";
 import Footer from "../components/common/Footer";
+import ProductDetail from "../views/product-detail";
 
 export default function AppRouter() {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ export default function AppRouter() {
       <Navigation setProducts={setProducts} />
       <Routes>
         <Route path={HOME} element={<Home products={products} />} />
-        {/* <Route path={PRODUCT_LIST} element={<ProductDetail />} /> */}
+        <Route path={PRODUCT_DETAIL} element={<ProductDetail />} />
         <Route path={SHOP} element={<Shop />} />
         <Route path={SIGNIN} element={<SignInView />} />
 

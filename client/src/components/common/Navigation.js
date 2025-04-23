@@ -93,7 +93,6 @@ const Navigation = ({ setProducts }) => {
     recognition.start();
   };
 
-  // console.log(products, "products")
   return (
     <AppBar position="static" sx={{ backgroundColor: "#f9f9f9" }}>
       <Container maxWidth="xl">

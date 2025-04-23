@@ -47,7 +47,7 @@ export default function ListProducts() {
 
         <Grid container spacing={3}>
           {products.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product._id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product._id}>
               <ProductCard
                 name={product.productName || product.name}
                 price={product.offerPrice || product.price}

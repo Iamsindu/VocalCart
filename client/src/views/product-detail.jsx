@@ -1,29 +1,80 @@
-import { Button, Chip, Container, Divider, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Container, Divider, Stack, Typography } from "@mui/material";
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import ProductImg from '../images/prod2.png'
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const ProductDetail = () => {
+    const { id } = useParams();
+    const [product, setProduct] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
+                setProduct(response.data);
+            } catch (err) {
+                console.error("Failed to fetch product:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
+
+
+    if (isLoading) {
+        return (
+            <Container maxWidth="xl" sx={{ textAlign: 'center', mt: 10 }}>
+                <CircularProgress />
+            </Container>
+        );
+    }
+
+    if (!product) {
+        return (
+            <Container maxWidth="xl" sx={{ textAlign: 'center', mt: 10 }}>
+                <Typography variant="h6">Product not found.</Typography>
+            </Container>
+        );
+    }
+
     return (
-        <Container maxWidth="xl">
-            <Stack mt={10} spacing={10} direction="row" sx={{ width: '100%' }}>
+        <Container maxWidth="xl" m={2}>
+            <Stack my={10} spacing={10} direction="row" sx={{ width: '100%' }}>
                 <Stack sx={{ width: '50%' }}>
-                    <img src={ProductImg} alt="product-img" style={{ borderRadius: '12px' }} />
+                    <img
+                        src={
+                            product.imageUrl?.startsWith("http")
+                                ? product.imageUrl
+                                : `${process.env.REACT_APP_API_URL}${product.imageUrl}`
+                        }
+                        alt={product.name}
+                        style={{ borderRadius: '12px', maxWidth: '100%' }}
+                    />
                 </Stack>
                 <Stack spacing={4} sx={{ width: '40%' }}>
-                    <Chip label="SALE" size="small" sx={{ width: '10%', backgroundColor: '#FFE5DF', color: '#B71D18', fontWeight: 700 }} />
                     <Typography
                         variant="caption"
                         fontWeight={600}
                         sx={{
-                            color: '#22C55E'
+                            color: product.stockStatus === 'in_stock' ? 'success.main' : 'error.main',
                         }}
                     >
-                        IN STOCK
+                        {product.stockStatus === 'in_stock' ? 'In Stock' : 'Out of Stock'}
                     </Typography>
 
-                    <Typography variant="h5" fontWeight={700} sx={{ color: '#1C252E' }}>Product name </Typography>
-                    <Typography variant="h5" fontWeight={700} sx={{ color: '#1C252E' }}>$25.18</Typography>
-                    <Typography variant="subtitle2" sx={{ color: '#637381' }}>Featuring the original ripple design inspired by Japanese bullet trains, the Nike Air Max 97 lets you push your style full-speed ahead.
+                    <Typography variant="h5" fontWeight={700} sx={{ color: '#1C252E' }}>
+                        {product.productName || product.name}
+                    </Typography>
+                    <Typography variant="h5" fontWeight={700} sx={{ color: '#1C252E' }}>
+                        {product.offerPrice || product.price}
+                    </Typography>
+                    <Typography variant="subtitle2" sx={{ color: '#637381' }}>
+                        {product.description}
                     </Typography>
 
                     <Divider my={2} />
@@ -32,9 +83,7 @@ const ProductDetail = () => {
                         <Button size="large" variant="contained" sx={{ backgroundColor: '#FFAB00', color: '#1C252E', fontWeight: 700, textTransform: 'none' }} startIcon={<ShoppingCartRoundedIcon />}>
                             Add to cart
                         </Button>
-                        <Button size="large" variant="contained" sx={{ backgroundColor: '#1C252E', textTransform: 'none' }}>Buy now</Button>
                     </Stack>
-
                 </Stack>
             </Stack>
         </Container>

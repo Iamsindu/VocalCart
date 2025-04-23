@@ -9,4 +9,4 @@ export const USERS_DETAILS = "/users/:id";
 
 export const PRODUCT_LIST = "/products/list";
 export const PRODUCT_ADD = "/products/add";
-export const PRODUCT_DETAIL = "/product/:id";
+export const PRODUCT_DETAIL = "/products/:id";
