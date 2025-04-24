@@ -5,3 +5,6 @@
 - **Raj Oli**  
 - **Sindhu Aryal**  
 - **Suyog Dhakal**  
+
+Frontend Demo : https://vocal-cart.netlify.app/
+Backend hosted on : https://vocalcart.onrender.com
